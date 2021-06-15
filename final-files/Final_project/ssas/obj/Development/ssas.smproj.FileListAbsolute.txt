@@ -1,7 +1,0 @@
-C:\Users\Administrator\source\repos\Final_project\ssas\bin\Model.asdatabase
-C:\Users\Administrator\source\repos\Final_project\ssas\bin\Model.deploymenttargets
-C:\Users\Administrator\source\repos\Final_project\ssas\bin\Model.deploymentoptions
-C:\Users\Administrator\source\repos\Final_project\ssas\obj\Development\ssas.smproj.CoreCompileInputs.cache
-C:\Users\Administrator\source\repos\Final_project\ssas\obj\Development\Model.asdatabase
-C:\Users\Administrator\source\repos\Final_project\ssas\obj\Development\Model.deploymentoptions
-C:\Users\Administrator\source\repos\Final_project\ssas\obj\Development\Model.deploymenttargets
