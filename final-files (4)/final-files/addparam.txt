@@ -1,0 +1,14 @@
+  alter proc sp_transaction
+  @fromtime time(0)  = null
+  as 
+  begin
+select fact.FactUsage.CallId, FACT.FactUsage.SKeyCustomer, FACT.FactUsage.SKeyCallType, FACT.FactUsage.SKeyOriginCountry, FACT.FactUsage.SKeyDestinationCountry, FACT.FactUsage.SKeyOriginOperator, 
+		FACT.FactUsage.SKeyDestinationOperator, FACT.FactUsage.SKeyPackage, FACT.FactUsage.SKeyCallOriginType, FACT.FactUsage.KeyCallDate, FACT.FactUsage.KeyCallTime, FACT.FactUsage.Duration, 
+		FACT.FactUsage.BillableDuration, FACT.FactUsage.Amount, FACT.FactUsage.BillableAmount, DIM.DimTime.FullTime
+from FACT.FactUsage INNER JOIN
+	DIM.DimTime ON FACT.FactUsage.KeyCallTime = DIM.DimTime.KeyTime
+  
+  where (@fromtime is null)
+  or fulltime = @fromtime 
+  end
+  sp_transaction '16:33:00'

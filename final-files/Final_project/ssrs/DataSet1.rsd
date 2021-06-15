@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>TheVoice_DWH</DataSourceReference>
+      <CommandText>SELECT        FACT.FactUsage.CallId, DIM.DimCustomers.DescCustomerName, DIM.DimCountries.DescCountry AS Country, DIM.DimOperators.DescOperator AS Operator, FACT.FactUsage.Duration, 
+                         FACT.FactUsage.BillableDuration, FACT.FactUsage.Amount, FACT.FactUsage.BillableAmount
+FROM            DIM.DimCallOriginType INNER JOIN
+                         FACT.FactUsage ON DIM.DimCallOriginType.SKeyCallOriginType = FACT.FactUsage.SKeyCallOriginType INNER JOIN
+                         DIM.DimCallTypes ON FACT.FactUsage.SKeyCallType = DIM.DimCallTypes.SKeyCallType INNER JOIN
+                         DIM.DimCountries ON FACT.FactUsage.SKeyOriginCountry = DIM.DimCountries.SKeyCountry INNER JOIN
+                         DIM.DimCustomers ON FACT.FactUsage.SKeyCustomer = DIM.DimCustomers.SKeyCustomer INNER JOIN
+                         DIM.DimDate ON FACT.FactUsage.KeyCallDate = DIM.DimDate.KeyDate INNER JOIN
+                         DIM.DimOperators ON FACT.FactUsage.SKeyOriginOperator = DIM.DimOperators.SKeyOperator INNER JOIN
+                         DIM.DimPackageCatalog ON FACT.FactUsage.SKeyPackage = DIM.DimPackageCatalog.SKeyPackage INNER JOIN
+                         DIM.DimTime ON FACT.FactUsage.KeyCallTime = DIM.DimTime.KeyTime INNER JOIN
+                         DIM.DimCountries AS DesCountry ON FACT.FactUsage.SKeyDestinationCountry = DesCountry.SKeyCountry INNER JOIN
+                         DIM.DimOperators AS DesOperation ON FACT.FactUsage.SKeyDestinationOperator = DesOperation.SKeyOperator</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="CallId">
+        <DataField>CallId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="DescCustomerName">
+        <DataField>DescCustomerName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Country">
+        <DataField>Country</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Operator">
+        <DataField>Operator</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Duration">
+        <DataField>Duration</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="BillableDuration">
+        <DataField>BillableDuration</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Amount">
+        <DataField>Amount</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="BillableAmount">
+        <DataField>BillableAmount</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

@@ -1,0 +1,1861 @@
+{
+  "name": "ssas",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "name": "SqlServer WIN-78376SSIAGK TheVoice_ETL",
+        "connectionString": "Provider=SQLNCLI11;Data Source=WIN-78376SSIAGK;Initial Catalog=TheVoice_ETL;Integrated Security=SSPI;Persist Security Info=false",
+        "impersonationMode": "impersonateAccount",
+        "account": "administrator",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "CallOriginType",
+        "columns": [
+          {
+            "name": "SKeyCallOriginType",
+            "dataType": "int64",
+            "sourceColumn": "SKeyCallOriginType",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "KeyCallOriginType",
+            "dataType": "int64",
+            "sourceColumn": "KeyCallOriginType",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescCallOriginType",
+            "dataType": "string",
+            "sourceColumn": "DescCallOriginType",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimCallOriginType",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [DIM].[DimCallOriginType].* FROM [DIM].[DimCallOriginType] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Call Origin Type",
+            "levels": [
+              {
+                "name": "DescCallOriginType",
+                "ordinal": 0,
+                "column": "DescCallOriginType"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [DIM].[DimCallOriginType].* FROM [DIM].[DimCallOriginType] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimCallOriginType"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "DIM"
+          }
+        ]
+      },
+      {
+        "name": "CallTypes",
+        "columns": [
+          {
+            "name": "SKeyCallType",
+            "dataType": "int64",
+            "sourceColumn": "SKeyCallType",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "KeyCallType",
+            "dataType": "int64",
+            "sourceColumn": "KeyCallType",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescCallTypeCode",
+            "dataType": "string",
+            "sourceColumn": "DescCallTypeCode",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescCallType",
+            "dataType": "string",
+            "sourceColumn": "DescCallType",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescFullCallType",
+            "dataType": "string",
+            "sourceColumn": "DescFullCallType",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescCallTypePriceCategory",
+            "dataType": "string",
+            "sourceColumn": "DescCallTypePriceCategory",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescCallTypeCategory",
+            "dataType": "string",
+            "sourceColumn": "DescCallTypeCategory",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimCallTypes",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [DIM].[DimCallTypes].* FROM [DIM].[DimCallTypes] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Call Type Category - Call Types",
+            "levels": [
+              {
+                "name": "DescCallTypeCategory",
+                "ordinal": 0,
+                "column": "DescCallTypeCategory"
+              },
+              {
+                "name": "DescCallType",
+                "ordinal": 1,
+                "column": "DescCallType"
+              }
+            ]
+          },
+          {
+            "name": "Call Types",
+            "levels": [
+              {
+                "name": "DescCallType",
+                "ordinal": 0,
+                "column": "DescCallType"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [DIM].[DimCallTypes].* FROM [DIM].[DimCallTypes] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimCallTypes"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "DIM"
+          }
+        ]
+      },
+      {
+        "name": "Countries",
+        "columns": [
+          {
+            "name": "SKeyCountry",
+            "dataType": "int64",
+            "sourceColumn": "SKeyCountry",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "KeyCountry",
+            "dataType": "int64",
+            "sourceColumn": "KeyCountry",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescCountry",
+            "dataType": "string",
+            "sourceColumn": "DescCountry",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescRegion",
+            "dataType": "string",
+            "sourceColumn": "DescRegion",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescArea",
+            "dataType": "string",
+            "sourceColumn": "DescArea",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimCountries",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [DIM].[DimCountries].* FROM [DIM].[DimCountries] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Count  Countries",
+            "expression": " DISTINCTCOUNT(Countries[SKeyCountry])"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "region-area-country",
+            "levels": [
+              {
+                "name": "DescRegion",
+                "ordinal": 0,
+                "column": "DescRegion"
+              },
+              {
+                "name": "DescArea",
+                "ordinal": 1,
+                "column": "DescArea"
+              },
+              {
+                "name": "DescCountry",
+                "ordinal": 2,
+                "column": "DescCountry"
+              }
+            ]
+          },
+          {
+            "name": "Areas",
+            "levels": [
+              {
+                "name": "DescArea",
+                "ordinal": 0,
+                "column": "DescArea"
+              }
+            ]
+          },
+          {
+            "name": "Countries",
+            "levels": [
+              {
+                "name": "DescCountry",
+                "ordinal": 0,
+                "column": "DescCountry"
+              }
+            ]
+          },
+          {
+            "name": "Regions",
+            "levels": [
+              {
+                "name": "DescRegion",
+                "ordinal": 0,
+                "column": "DescRegion"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [DIM].[DimCountries].* FROM [DIM].[DimCountries] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimCountries"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "DIM"
+          }
+        ]
+      },
+      {
+        "name": "Customers",
+        "columns": [
+          {
+            "name": "SKeyCustomer",
+            "dataType": "int64",
+            "sourceColumn": "SKeyCustomer",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "KeyCustomer",
+            "dataType": "int64",
+            "sourceColumn": "KeyCustomer",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescCustomerLineOperator",
+            "dataType": "string",
+            "sourceColumn": "DescCustomerLineOperator",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescCustomerLineCountry",
+            "dataType": "string",
+            "sourceColumn": "DescCustomerLineCountry",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescCustomerName",
+            "dataType": "string",
+            "sourceColumn": "DescCustomerName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescCustomerAddress",
+            "dataType": "string",
+            "sourceColumn": "DescCustomerAddress",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescCusomterPackage",
+            "dataType": "string",
+            "sourceColumn": "DescCusomterPackage",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "type": "calculated",
+            "name": "Calls Per Customer",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": "countx(RELATEDTABLE(FactUsage), FactUsage[CallId])"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimCustomers",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [DIM].[DimCustomers].* FROM [DIM].[DimCustomers] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Number Of Customers",
+            "expression": "DISTINCTCOUNT(Customers[KeyCustomer])"
+          },
+          {
+            "name": "Measure 1",
+            "expression": "IF(HASONEVALUE(FactUsage[CallId]) && ISBLANK([Calls Count]), 0 , [Calls Count])"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Packages - Customers",
+            "levels": [
+              {
+                "name": "DescCusomterPackage",
+                "ordinal": 0,
+                "column": "DescCusomterPackage"
+              },
+              {
+                "name": "DescCustomerName",
+                "ordinal": 1,
+                "column": "DescCustomerName"
+              }
+            ]
+          },
+          {
+            "name": "Country - Customers",
+            "levels": [
+              {
+                "name": "DescCustomerLineCountry",
+                "ordinal": 0,
+                "column": "DescCustomerLineCountry"
+              },
+              {
+                "name": "DescCustomerName",
+                "ordinal": 1,
+                "column": "DescCustomerName"
+              }
+            ]
+          },
+          {
+            "name": "Operator - Customers",
+            "levels": [
+              {
+                "name": "DescCustomerLineOperator",
+                "ordinal": 0,
+                "column": "DescCustomerLineOperator"
+              },
+              {
+                "name": "DescCustomerName",
+                "ordinal": 1,
+                "column": "DescCustomerName"
+              }
+            ]
+          },
+          {
+            "name": "Customers",
+            "levels": [
+              {
+                "name": "DescCustomerName",
+                "ordinal": 0,
+                "column": "DescCustomerName"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [DIM].[DimCustomers].* FROM [DIM].[DimCustomers] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimCustomers"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "DIM"
+          }
+        ]
+      },
+      {
+        "name": "Date",
+        "dataCategory": "Time",
+        "columns": [
+          {
+            "name": "KeyDate",
+            "dataType": "int64",
+            "sourceColumn": "KeyDate",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FullDate",
+            "dataType": "dateTime",
+            "isKey": true,
+            "sourceColumn": "FullDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "KeyYear",
+            "dataType": "int64",
+            "sourceColumn": "KeyYear",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CodeYear",
+            "dataType": "int64",
+            "sourceColumn": "CodeYear",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescYear",
+            "dataType": "string",
+            "sourceColumn": "DescYear",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "KeyMonth",
+            "dataType": "int64",
+            "sourceColumn": "KeyMonth",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CodeMonth",
+            "dataType": "int64",
+            "sourceColumn": "CodeMonth",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescMonth",
+            "dataType": "string",
+            "sourceColumn": "DescMonth",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CodeDayInWeek",
+            "dataType": "int64",
+            "sourceColumn": "CodeDayInWeek",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescDayInWeek",
+            "dataType": "string",
+            "sourceColumn": "DescDayInWeek",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDate",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [DIM].[DimDate].* FROM [DIM].[DimDate] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Year - month - Date",
+            "levels": [
+              {
+                "name": "DescYear",
+                "ordinal": 0,
+                "column": "DescYear"
+              },
+              {
+                "name": "DescMonth",
+                "ordinal": 1,
+                "column": "DescMonth"
+              },
+              {
+                "name": "FullDate",
+                "ordinal": 2,
+                "column": "FullDate"
+              }
+            ]
+          },
+          {
+            "name": "Monthes",
+            "levels": [
+              {
+                "name": "DescMonth",
+                "ordinal": 0,
+                "column": "DescMonth"
+              }
+            ]
+          },
+          {
+            "name": "Days In Week",
+            "levels": [
+              {
+                "name": "DescDayInWeek",
+                "ordinal": 0,
+                "column": "DescDayInWeek"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [DIM].[DimDate].* FROM [DIM].[DimDate] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimDate"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "DIM"
+          }
+        ]
+      },
+      {
+        "name": "Operators",
+        "columns": [
+          {
+            "name": "SKeyOperator",
+            "dataType": "int64",
+            "sourceColumn": "SKeyOperator",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "KeyOperator",
+            "dataType": "int64",
+            "sourceColumn": "KeyOperator",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescOperator",
+            "dataType": "string",
+            "sourceColumn": "DescOperator",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescKeyPrefix",
+            "dataType": "string",
+            "sourceColumn": "DescKeyPrefix",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimOperators",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [DIM].[DimOperators].* FROM [DIM].[DimOperators] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Operators",
+            "levels": [
+              {
+                "name": "DescOperator",
+                "ordinal": 0,
+                "column": "DescOperator"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [DIM].[DimOperators].* FROM [DIM].[DimOperators] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimOperators"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "DIM"
+          }
+        ]
+      },
+      {
+        "name": "PackageCatalog",
+        "columns": [
+          {
+            "name": "SKeyPackage",
+            "dataType": "int64",
+            "sourceColumn": "SKeyPackage",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "KeyPackage",
+            "dataType": "int64",
+            "sourceColumn": "KeyPackage",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescPackage",
+            "dataType": "string",
+            "sourceColumn": "DescPackage",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DatePackageCreation",
+            "dataType": "dateTime",
+            "sourceColumn": "DatePackageCreation",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "DatePackageEnd",
+            "dataType": "dateTime",
+            "sourceColumn": "DatePackageEnd",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "DescPackageStatus",
+            "dataType": "string",
+            "sourceColumn": "DescPackageStatus",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "CodePackageActivitiesDays",
+            "dataType": "int64",
+            "sourceColumn": "CodePackageActivitiesDays",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimPackageCatalog",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [DIM].[DimPackageCatalog].* FROM [DIM].[DimPackageCatalog] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Package Status - Packages",
+            "levels": [
+              {
+                "name": "DescPackageStatus",
+                "ordinal": 0,
+                "column": "DescPackageStatus"
+              },
+              {
+                "name": "DescPackage",
+                "ordinal": 1,
+                "column": "DescPackage"
+              }
+            ]
+          },
+          {
+            "name": "Packages",
+            "levels": [
+              {
+                "name": "DescPackage",
+                "ordinal": 0,
+                "column": "DescPackage"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [DIM].[DimPackageCatalog].* FROM [DIM].[DimPackageCatalog] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimPackageCatalog"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "DIM"
+          }
+        ]
+      },
+      {
+        "name": "Time",
+        "columns": [
+          {
+            "name": "KeyTime",
+            "dataType": "int64",
+            "sourceColumn": "KeyTime",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FullTime",
+            "dataType": "dateTime",
+            "sourceColumn": "FullTime",
+            "formatString": "HH:mm",
+            "sourceProviderType": "145",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeCustom\"><DateTimes><DateTime LCID=\"1033\" Group=\"ShortTime\" FormatString=\"HH:mm\" /></DateTimes></Format>"
+              }
+            ]
+          },
+          {
+            "name": "CodeHour",
+            "dataType": "int64",
+            "sourceColumn": "CodeHour",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescHour",
+            "dataType": "string",
+            "sourceColumn": "DescHour",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "KeyMinute",
+            "dataType": "int64",
+            "sourceColumn": "KeyMinute",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "CodeMinute",
+            "dataType": "int64",
+            "sourceColumn": "CodeMinute",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescMinute",
+            "dataType": "string",
+            "sourceColumn": "DescMinute",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimTime",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [DIM].[DimTime].* FROM [DIM].[DimTime] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Hours -Minutes",
+            "levels": [
+              {
+                "name": "DescHour",
+                "ordinal": 0,
+                "column": "DescHour"
+              },
+              {
+                "name": "DescMinute",
+                "ordinal": 1,
+                "column": "DescMinute"
+              }
+            ]
+          },
+          {
+            "name": "Hours",
+            "levels": [
+              {
+                "name": "DescHour",
+                "ordinal": 0,
+                "column": "DescHour"
+              }
+            ]
+          },
+          {
+            "name": "Minutes",
+            "levels": [
+              {
+                "name": "DescMinute",
+                "ordinal": 0,
+                "column": "DescMinute"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [DIM].[DimTime].* FROM [DIM].[DimTime] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimTime"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "DIM"
+          }
+        ]
+      },
+      {
+        "name": "FactUsage",
+        "columns": [
+          {
+            "name": "CallId",
+            "dataType": "int64",
+            "sourceColumn": "CallId",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SKeyCustomer",
+            "dataType": "int64",
+            "sourceColumn": "SKeyCustomer",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SKeyCallType",
+            "dataType": "int64",
+            "sourceColumn": "SKeyCallType",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SKeyOriginCountry",
+            "dataType": "int64",
+            "sourceColumn": "SKeyOriginCountry",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SKeyDestinationCountry",
+            "dataType": "int64",
+            "sourceColumn": "SKeyDestinationCountry",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SKeyOriginOperator",
+            "dataType": "int64",
+            "sourceColumn": "SKeyOriginOperator",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SKeyDestinationOperator",
+            "dataType": "int64",
+            "sourceColumn": "SKeyDestinationOperator",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SKeyPackage",
+            "dataType": "int64",
+            "sourceColumn": "SKeyPackage",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "SKeyCallOriginType",
+            "dataType": "int64",
+            "sourceColumn": "SKeyCallOriginType",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "KeyCallDate",
+            "dataType": "int64",
+            "sourceColumn": "KeyCallDate",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "KeyCallTime",
+            "dataType": "int64",
+            "sourceColumn": "KeyCallTime",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Duration",
+            "dataType": "int64",
+            "sourceColumn": "Duration",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Billable Duration",
+            "dataType": "int64",
+            "sourceColumn": "BillableDuration",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Amount",
+            "dataType": "double",
+            "sourceColumn": "Amount",
+            "formatString": "\"₪\" #,0.00;\"₪\"-#,0.00;\"₪\" #,0.00",
+            "sourceProviderType": "Double",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1037\" DisplayName=\"₪ Hebrew (Israel)\" Symbol=\"₪\" PositivePattern=\"2\" NegativePattern=\"2\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Billable Amount",
+            "dataType": "double",
+            "sourceColumn": "BillableAmount",
+            "formatString": "\"₪\" #,0.00;\"₪\"-#,0.00;\"₪\" #,0.00",
+            "sourceProviderType": "Double",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"1037\" DisplayName=\"₪ Hebrew (Israel)\" Symbol=\"₪\" PositivePattern=\"2\" NegativePattern=\"2\" /></Format>"
+              }
+            ]
+          },
+          {
+            "type": "calculated",
+            "name": "Discount",
+            "dataType": "double",
+            "isDataTypeInferred": true,
+            "expression": "FactUsage[Amount]-FactUsage[Billable Amount]"
+          },
+          {
+            "type": "calculated",
+            "name": "Discount Percentage",
+            "dataType": "double",
+            "isDataTypeInferred": true,
+            "expression": "FactUsage[Discount]/FactUsage[Amount]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactUsage",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [FACT].[FactUsage].* FROM [FACT].[FactUsage] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Rev Previous year",
+            "expression": [
+              "CALCULATE (SUM(FactUsage[Billable Amount]),SAMEPERIODLASTYEAR('Date'[FullDate]))",
+              ""
+            ],
+            "formatString": "\"₪\" #,0.00;\"₪\"-#,0.00;\"₪\" #,0.00",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1037\" DisplayName=\"₪ Hebrew (Israel)\" Symbol=\"₪\" PositivePattern=\"2\" NegativePattern=\"2\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Full Minutes",
+            "expression": " SUM(FactUsage[Duration])"
+          },
+          {
+            "name": "Discount Call Cost",
+            "expression": "SUM([Billable Amount])",
+            "formatString": "\"₪\" #,0.00;\"₪\"-#,0.00;\"₪\" #,0.00",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1037\" DisplayName=\"₪ Hebrew (Israel)\" Symbol=\"₪\" PositivePattern=\"2\" NegativePattern=\"2\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Rev",
+            "expression": " SUM(FactUsage[Billable Amount])",
+            "formatString": "\"₪\" #,0.00;\"₪\"-#,0.00;\"₪\" #,0.00",
+            "kpi": {
+              "targetExpression": "'FactUsage'[KPI Rev Of Prev Month]",
+              "targetFormatString": "\"₪\" #,0.00;\"₪\"-#,0.00;\"₪\" #,0.00",
+              "statusExpression": [
+                "var x='FactUsage'[Total Rev]/'FactUsage'[_Total Rev Goal] return",
+                "            if(ISBLANK(x),BLANK(),",
+                "                    If(x<0.33,-1,",
+                "\t                If(x<0.66,0,1)",
+                "                )",
+                "            )",
+                "            "
+              ],
+              "annotations": [
+                {
+                  "name": "GoalType",
+                  "value": "Measure"
+                },
+                {
+                  "name": "KpiStatusType",
+                  "value": "Linear"
+                },
+                {
+                  "name": "KpiThresholdType",
+                  "value": "Percentage"
+                },
+                {
+                  "name": "KpiThresholdOrdering",
+                  "value": "Ascending"
+                },
+                {
+                  "name": "KpiThresholdCount",
+                  "value": "2"
+                },
+                {
+                  "name": "KpiThreshold_0",
+                  "value": "33"
+                },
+                {
+                  "name": "KpiThreshold_1",
+                  "value": "66"
+                }
+              ]
+            },
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1037\" DisplayName=\"₪ Hebrew (Israel)\" Symbol=\"₪\" PositivePattern=\"2\" NegativePattern=\"2\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "KPI Rev Of Prev Month",
+            "expression": "CALCULATE( SUM([Billable Amount]), DATEADD('Date'[FullDate], -1, month))",
+            "formatString": "\"₪\" #,0.00;\"₪\"-#,0.00;\"₪\" #,0.00",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1037\" DisplayName=\"₪ Hebrew (Israel)\" Symbol=\"₪\" PositivePattern=\"2\" NegativePattern=\"2\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Discounted minutes",
+            "expression": "sum(FactUsage[Billable Duration])"
+          },
+          {
+            "name": "Call Cost",
+            "expression": "sum(FactUsage[Amount])",
+            "formatString": "\"₪\" #,0.00;\"₪\"-#,0.00;\"₪\" #,0.00",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1037\" DisplayName=\"₪ Hebrew (Israel)\" Symbol=\"₪\" PositivePattern=\"2\" NegativePattern=\"2\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Discounted Price",
+            "expression": " SUM(FactUsage[Billable Amount])",
+            "formatString": "\"₪\" #,0.00;\"₪\"-#,0.00;\"₪\" #,0.00",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1037\" DisplayName=\"₪ Hebrew (Israel)\" Symbol=\"₪\" PositivePattern=\"2\" NegativePattern=\"2\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Calls Count",
+            "expression": "COUNT([CallId])"
+          },
+          {
+            "name": "Customers Used services",
+            "expression": " DISTINCTCOUNT((FactUsage[SKeyCustomer]))"
+          },
+          {
+            "name": "Total Customers",
+            "expression": " Count(Customers[SKeyCustomer])"
+          },
+          {
+            "name": "Customers didn't use services",
+            "expression": "[Total Customers]-[Customers Used services]"
+          },
+          {
+            "name": "KPI Goal by year",
+            "expression": "CALCULATE (SUM(FactUsage[Duration]),SAMEPERIODLASTYEAR('Date'[FullDate]))"
+          },
+          {
+            "name": "Miniutes Usage per Year",
+            "expression": " SUM(FactUsage[Duration])",
+            "kpi": {
+              "targetExpression": "'FactUsage'[KPI Goal by year]",
+              "statusGraphic": "Traffic Light - Single",
+              "statusExpression": [
+                "var x='FactUsage'[Miniutes Usage per Year]/'FactUsage'[_Miniutes Usage per Year Goal] return",
+                "            if(ISBLANK(x),BLANK(),",
+                "                    If(x<0.85,-1,",
+                "\t                If(x<1.05,0,1)",
+                "                )",
+                "            )",
+                "            "
+              ],
+              "annotations": [
+                {
+                  "name": "GoalType",
+                  "value": "Measure"
+                },
+                {
+                  "name": "KpiStatusType",
+                  "value": "Linear"
+                },
+                {
+                  "name": "KpiThresholdType",
+                  "value": "Percentage"
+                },
+                {
+                  "name": "KpiThresholdOrdering",
+                  "value": "Ascending"
+                },
+                {
+                  "name": "KpiThresholdCount",
+                  "value": "2"
+                },
+                {
+                  "name": "KpiThreshold_0",
+                  "value": "85"
+                },
+                {
+                  "name": "KpiThreshold_1",
+                  "value": "105"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Count of Countries",
+            "expression": "DISTINCTCOUNT((FactUsage[SKeyOriginCountry]))"
+          },
+          {
+            "name": "Calls AVG by Country",
+            "expression": " [Calls Count]/[Count of Countries]"
+          },
+          {
+            "name": "Calls Count KPI",
+            "expression": "COUNT([CallId])",
+            "kpi": {
+              "targetExpression": "11029",
+              "statusGraphic": "Traffic Light - Single",
+              "statusExpression": [
+                "var x='FactUsage'[Calls Count KPI] return",
+                "            if(ISBLANK(x),BLANK(),",
+                "                    If(x<10000,-1,",
+                "\t                If(x<11000,0,1)",
+                "                )",
+                "            )",
+                "            "
+              ],
+              "annotations": [
+                {
+                  "name": "GoalType",
+                  "value": "StaticValue"
+                },
+                {
+                  "name": "KpiStatusType",
+                  "value": "Linear"
+                },
+                {
+                  "name": "KpiThresholdType",
+                  "value": "Absolute"
+                },
+                {
+                  "name": "KpiThresholdOrdering",
+                  "value": "Ascending"
+                },
+                {
+                  "name": "KpiThresholdCount",
+                  "value": "2"
+                },
+                {
+                  "name": "KpiThreshold_0",
+                  "value": "10000"
+                },
+                {
+                  "name": "KpiThreshold_1",
+                  "value": "11000"
+                }
+              ]
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [FACT].[FactUsage].* FROM [FACT].[FactUsage] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "FactUsage"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "FACT"
+          }
+        ]
+      },
+      {
+        "name": "DestinationCountries",
+        "columns": [
+          {
+            "name": "SKeyCountry",
+            "dataType": "int64",
+            "sourceColumn": "SKeyCountry",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "KeyCountry",
+            "dataType": "int64",
+            "sourceColumn": "KeyCountry",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DescCountry",
+            "dataType": "string",
+            "sourceColumn": "DescCountry",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescRegion",
+            "dataType": "string",
+            "sourceColumn": "DescRegion",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DescArea",
+            "dataType": "string",
+            "sourceColumn": "DescArea",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimCountries 1",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [DIM].[DimCountries].* FROM [DIM].[DimCountries] ",
+              "dataSource": "SqlServer WIN-78376SSIAGK TheVoice_ETL"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [DIM].[DimCountries].* FROM [DIM].[DimCountries] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimCountries"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "DIM"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "d8ba75ef-9296-430b-abe8-528005a4706d",
+        "fromTable": "FactUsage",
+        "fromColumn": "SKeyCustomer",
+        "toTable": "Customers",
+        "toColumn": "SKeyCustomer"
+      },
+      {
+        "name": "ed7deea0-dc7a-4699-acc1-3396d8471ba2",
+        "fromTable": "FactUsage",
+        "fromColumn": "SKeyOriginCountry",
+        "toTable": "Countries",
+        "toColumn": "SKeyCountry"
+      },
+      {
+        "name": "5d9e4021-d686-49a4-b99d-3182f1d11c14",
+        "fromTable": "FactUsage",
+        "fromColumn": "SKeyCallType",
+        "toTable": "CallTypes",
+        "toColumn": "SKeyCallType"
+      },
+      {
+        "name": "881f795d-ec37-4ea9-a0e5-9adec971a882",
+        "fromTable": "FactUsage",
+        "fromColumn": "SKeyCallOriginType",
+        "toTable": "CallOriginType",
+        "toColumn": "SKeyCallOriginType"
+      },
+      {
+        "name": "510601f5-31f1-486a-8cfc-0673d5ccd04e",
+        "fromTable": "FactUsage",
+        "fromColumn": "KeyCallTime",
+        "toTable": "Time",
+        "toColumn": "KeyTime"
+      },
+      {
+        "name": "37d33471-0b8b-4508-95c8-1a932f9748f2",
+        "fromTable": "FactUsage",
+        "fromColumn": "SKeyPackage",
+        "toTable": "PackageCatalog",
+        "toColumn": "SKeyPackage"
+      },
+      {
+        "name": "b64980f4-5311-4809-a598-301923d8b235",
+        "fromTable": "FactUsage",
+        "fromColumn": "SKeyOriginOperator",
+        "toTable": "Operators",
+        "toColumn": "SKeyOperator"
+      },
+      {
+        "name": "d8c82a1c-f110-4d25-82e5-5a30858e8619",
+        "fromTable": "FactUsage",
+        "fromColumn": "KeyCallDate",
+        "toTable": "Date",
+        "toColumn": "KeyDate"
+      },
+      {
+        "name": "e053b325-93cb-4ee1-90a4-12c7d2f5c227",
+        "fromTable": "FactUsage",
+        "fromColumn": "SKeyDestinationCountry",
+        "toTable": "DestinationCountries",
+        "toColumn": "SKeyCountry"
+      }
+    ],
+    "perspectives": [
+      {
+        "name": "Sales",
+        "tables": [
+          {
+            "name": "Customers",
+            "columns": [
+              {
+                "name": "Calls Per Customer"
+              },
+              {
+                "name": "DescCusomterPackage"
+              },
+              {
+                "name": "DescCustomerAddress"
+              },
+              {
+                "name": "DescCustomerLineCountry"
+              },
+              {
+                "name": "DescCustomerLineOperator"
+              },
+              {
+                "name": "DescCustomerName"
+              },
+              {
+                "name": "KeyCustomer"
+              },
+              {
+                "name": "SKeyCustomer"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Measure 1"
+              },
+              {
+                "name": "Number Of Customers"
+              }
+            ]
+          },
+          {
+            "name": "FactUsage",
+            "columns": [
+              {
+                "name": "Amount"
+              },
+              {
+                "name": "Billable Amount"
+              },
+              {
+                "name": "Billable Duration"
+              },
+              {
+                "name": "CallId"
+              },
+              {
+                "name": "Discount"
+              },
+              {
+                "name": "Discount Percentage"
+              },
+              {
+                "name": "Duration"
+              },
+              {
+                "name": "KeyCallDate"
+              },
+              {
+                "name": "KeyCallTime"
+              },
+              {
+                "name": "SKeyCallOriginType"
+              },
+              {
+                "name": "SKeyCallType"
+              },
+              {
+                "name": "SKeyCustomer"
+              },
+              {
+                "name": "SKeyDestinationCountry"
+              },
+              {
+                "name": "SKeyDestinationOperator"
+              },
+              {
+                "name": "SKeyOriginCountry"
+              },
+              {
+                "name": "SKeyOriginOperator"
+              },
+              {
+                "name": "SKeyPackage"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Call Cost"
+              },
+              {
+                "name": "Calls Count"
+              },
+              {
+                "name": "Customers didn't use services"
+              },
+              {
+                "name": "Customers Used services"
+              },
+              {
+                "name": "Discount Call Cost"
+              },
+              {
+                "name": "Discounted minutes"
+              },
+              {
+                "name": "Discounted Price"
+              },
+              {
+                "name": "Full Minutes"
+              },
+              {
+                "name": "KPI Rev Of Prev Month"
+              },
+              {
+                "name": "Rev Previous year"
+              },
+              {
+                "name": "Total Customers"
+              },
+              {
+                "name": "Total Rev"
+              }
+            ]
+          },
+          {
+            "name": "PackageCatalog",
+            "columns": [
+              {
+                "name": "CodePackageActivitiesDays"
+              },
+              {
+                "name": "DatePackageCreation"
+              },
+              {
+                "name": "DatePackageEnd"
+              },
+              {
+                "name": "DescPackage"
+              },
+              {
+                "name": "DescPackageStatus"
+              },
+              {
+                "name": "KeyPackage"
+              },
+              {
+                "name": "SKeyPackage"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Technical Support",
+        "tables": [
+          {
+            "name": "CallOriginType",
+            "columns": [
+              {
+                "name": "DescCallOriginType"
+              },
+              {
+                "name": "KeyCallOriginType"
+              },
+              {
+                "name": "SKeyCallOriginType"
+              }
+            ]
+          },
+          {
+            "name": "CallTypes",
+            "columns": [
+              {
+                "name": "DescCallType"
+              },
+              {
+                "name": "DescCallTypeCategory"
+              },
+              {
+                "name": "DescCallTypeCode"
+              },
+              {
+                "name": "DescCallTypePriceCategory"
+              },
+              {
+                "name": "DescFullCallType"
+              },
+              {
+                "name": "KeyCallType"
+              },
+              {
+                "name": "SKeyCallType"
+              }
+            ]
+          },
+          {
+            "name": "Countries",
+            "columns": [
+              {
+                "name": "DescArea"
+              },
+              {
+                "name": "DescCountry"
+              },
+              {
+                "name": "DescRegion"
+              },
+              {
+                "name": "KeyCountry"
+              },
+              {
+                "name": "SKeyCountry"
+              }
+            ]
+          },
+          {
+            "name": "Customers",
+            "columns": [
+              {
+                "name": "Calls Per Customer"
+              },
+              {
+                "name": "DescCusomterPackage"
+              },
+              {
+                "name": "DescCustomerAddress"
+              },
+              {
+                "name": "DescCustomerLineCountry"
+              },
+              {
+                "name": "DescCustomerLineOperator"
+              },
+              {
+                "name": "DescCustomerName"
+              },
+              {
+                "name": "KeyCustomer"
+              },
+              {
+                "name": "SKeyCustomer"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Measure 1"
+              },
+              {
+                "name": "Number Of Customers"
+              }
+            ]
+          },
+          {
+            "name": "Operators",
+            "columns": [
+              {
+                "name": "DescKeyPrefix"
+              },
+              {
+                "name": "DescOperator"
+              },
+              {
+                "name": "KeyOperator"
+              },
+              {
+                "name": "SKeyOperator"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Management",
+        "tables": [
+          {
+            "name": "CallOriginType",
+            "columns": [
+              {
+                "name": "DescCallOriginType"
+              },
+              {
+                "name": "KeyCallOriginType"
+              },
+              {
+                "name": "SKeyCallOriginType"
+              }
+            ]
+          },
+          {
+            "name": "CallTypes",
+            "columns": [
+              {
+                "name": "DescCallType"
+              },
+              {
+                "name": "DescCallTypeCategory"
+              },
+              {
+                "name": "DescCallTypeCode"
+              },
+              {
+                "name": "DescCallTypePriceCategory"
+              },
+              {
+                "name": "DescFullCallType"
+              },
+              {
+                "name": "KeyCallType"
+              },
+              {
+                "name": "SKeyCallType"
+              }
+            ]
+          },
+          {
+            "name": "FactUsage",
+            "columns": [
+              {
+                "name": "Amount"
+              },
+              {
+                "name": "Billable Amount"
+              },
+              {
+                "name": "Billable Duration"
+              },
+              {
+                "name": "CallId"
+              },
+              {
+                "name": "Discount"
+              },
+              {
+                "name": "Discount Percentage"
+              },
+              {
+                "name": "Duration"
+              },
+              {
+                "name": "KeyCallDate"
+              },
+              {
+                "name": "KeyCallTime"
+              },
+              {
+                "name": "SKeyCallOriginType"
+              },
+              {
+                "name": "SKeyCallType"
+              },
+              {
+                "name": "SKeyCustomer"
+              },
+              {
+                "name": "SKeyDestinationCountry"
+              },
+              {
+                "name": "SKeyDestinationOperator"
+              },
+              {
+                "name": "SKeyOriginCountry"
+              },
+              {
+                "name": "SKeyOriginOperator"
+              },
+              {
+                "name": "SKeyPackage"
+              }
+            ],
+            "measures": [
+              {
+                "name": "Call Cost"
+              },
+              {
+                "name": "Calls Count"
+              },
+              {
+                "name": "Customers didn't use services"
+              },
+              {
+                "name": "Customers Used services"
+              },
+              {
+                "name": "Discount Call Cost"
+              },
+              {
+                "name": "Discounted minutes"
+              },
+              {
+                "name": "Discounted Price"
+              },
+              {
+                "name": "Full Minutes"
+              },
+              {
+                "name": "KPI Rev Of Prev Month"
+              },
+              {
+                "name": "Rev Previous year"
+              },
+              {
+                "name": "Total Customers"
+              },
+              {
+                "name": "Total Rev"
+              }
+            ]
+          },
+          {
+            "name": "PackageCatalog",
+            "columns": [
+              {
+                "name": "CodePackageActivitiesDays"
+              },
+              {
+                "name": "DatePackageCreation"
+              },
+              {
+                "name": "DatePackageEnd"
+              },
+              {
+                "name": "DescPackage"
+              },
+              {
+                "name": "DescPackageStatus"
+              },
+              {
+                "name": "KeyPackage"
+              },
+              {
+                "name": "SKeyPackage"
+              }
+            ]
+          },
+          {
+            "name": "Time",
+            "columns": [
+              {
+                "name": "CodeHour"
+              },
+              {
+                "name": "CodeMinute"
+              },
+              {
+                "name": "DescHour"
+              },
+              {
+                "name": "DescMinute"
+              },
+              {
+                "name": "FullTime"
+              },
+              {
+                "name": "KeyMinute"
+              },
+              {
+                "name": "KeyTime"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  }
+}
